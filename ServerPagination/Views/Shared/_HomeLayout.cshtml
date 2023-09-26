@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
+    <meta name="author" content="Coderthemes">
+    
+    <link rel="shortcut icon" href="~/images/favicon_1.ico">
+
+    <title>ServerPagination | @ViewData["Title"]</title>
+    
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/core.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/components.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/icons.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/pages.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/responsive.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/site.css" rel="stylesheet" />
+
+    <!--foo table css-->
+    <link href="~/assets/plugins/footable/css/footable.core.css" rel="stylesheet" />
+    <link href="~/assets/plugins/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" />
+
+</head>
+
+
+<body class="fixed-left">
+
+    <!-- Begin page -->
+    <div id="wrapper">
+
+        <!-- Top Bar Start -->
+        <div class="topbar">
+
+            <!-- LOGO -->
+            <div class="topbar-left">
+                <div class="text-center">
+                    <a class="logo"><i class="icon-magnet icon-c-logo"></i><span><i class="icon-magnet"></i>ser</span></a>
+                </div>
+            </div>
+
+            <!-- Button mobile view to collapse sidebar menu -->
+            <div class="navbar navbar-default" role="navigation">
+                <div class="container">
+                    <div class="">
+                        <div class="pull-left">
+                            <button class="button-menu-mobile open-left">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <span class="clearfix"></span>
+                        </div>
+
+                        <ul class="nav navbar-nav navbar-right pull-right">
+                            <li class="hidden-xs">
+                                <a href="#" id="btn-fullscreen" class="waves-effect waves-light"><i class="fa fa-arrows-alt"></i></a>
+                            </li>
+                            <!--<li class="hidden-xs">
+                                <a href="@Url.Action("SignOut", "Account")" class="waves-effect waves-light"><i class="fa fa-sign-out"></i></a>
+                            </li>-->
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+        <!-- Top Bar End -->
+        <!-- ========== Left Sidebar Start ========== -->
+
+        <div class="left side-menu">
+            <div class="sidebar-inner slimscrollleft">
+                <!--- Divider -->
+                <div id="sidebar-menu">
+                    <ul>
+
+                        <li class="">
+                            <a href='@Url.Action("Index", "Home")' class="waves-effect"><i class="ti-home"></i><span>Dashboard</span></a>
+                        </li>
+
+                        <li class="">
+                            <a href='@Url.Action("Users", "Home",new{@class="waves-effect"})'><i class="ti-view-list"></i><span>Users</span></a>
+                        </li>
+
+                        <li class="@*has_sub*@">
+                            <a href='@Url.Action("Profile", "Home")' class="waves-effect"><i class="ti-user"></i><span> Profile </span></a>
+                        </li>
+
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- Left Sidebar End -->
+        <!-- ============================================================== -->
+
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="content-page">
+            <!-- Start content -->
+            <div class="content">
+
+                @RenderBody()
+                 
+                <!-- Loader -->
+                <div class="loader" style="display:none"></div>
+
+            </div> <!-- content -->
+        </div>
+
+    </div>
+    <!-- END wrapper -->
+
+    <script>
+        var resizefunc = [];
+    </script>
+
+    <!-- jQuery  -->
+    <script src="~/assets/js/jquery.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/detect.js"></script>
+    <script src="~/assets/js/fastclick.js"></script>
+    <script src="~/assets/js/jquery.slimscroll.js"></script>
+    <script src="~/assets/js/jquery.blockUI.js"></script>
+    <script src="~/assets/js/waves.js"></script>
+    <script src="~/assets/js/wow.min.js"></script>
+    <script src="~/assets/js/jquery.nicescroll.js"></script>
+    <script src="~/assets/js/jquery.scrollTo.min.js"></script>
+    <script src="~/assets/plugins/peity/jquery.peity.min.js"></script>
+
+    <!-- jQuery -->
+    <script src="~/assets/plugins/waypoints/lib/jquery.waypoints.js"></script>
+    <script src="~/assets/plugins/counterup/jquery.counterup.min.js"></script>
+    <script src="~/assets/plugins/raphael/raphael-min.js"></script>
+    <script src="~/assets/plugins/jquery-knob/jquery.knob.js"></script>
+    <script src="~/assets/pages/jquery.dashboard.js"></script>
+    <script src="~/assets/js/jquery.core.js"></script>
+    <script src="~/assets/js/jquery.app.js"></script>
+    <script src="~/js/site.js"></script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $('.counter').counterUp({
+                delay: 100,
+                time: 1200
+            });
+            $(".knob").knob();
+        });
+    </script>
+
+    <script>
+        var resizefunc = [];
+    </script>
+
+    <!--FooTable-->
+    <script src="~/assets/plugins/footable/js/footable.all.min.js"></script>
+    <script src="~/assets/plugins/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+
+    <!--FooTable Example-->
+    <script src="~/assets/pages/jquery.footable.js"></script>
+    
+    <!-- Page Specific JS Libraries -->
+    <script src="~/assets/plugins/dropzone/dist/dropzone.js"></script>
+
+</body>
+</html>
