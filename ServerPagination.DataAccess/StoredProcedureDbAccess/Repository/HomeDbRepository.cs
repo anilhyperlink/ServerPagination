@@ -103,9 +103,9 @@ namespace EmployeeAPIDemo.Web.DataAccess.StoredProcedureDbAccess.Repository
             vParams.Add("@PageNumber", pageNumber);
             vParams.Add("@PageSize", pageSize);
             vParams.Add("@SearchQuery", searchQuery);
-
+            vParams.Add("@TotalCount", dbType: DbType.Int32, direction: ParameterDirection.Output);
             var userList = vconn.Query<UserModel>("sp_proc_UserList", vParams, commandType: CommandType.StoredProcedure);
-            var totalRecord = vconn.QueryFirstOrDefault<int>("sp_proc_UserCount", vParams, commandType: CommandType.StoredProcedure);
+            var totalRecord = vParams.Get<int>("@TotalCount");
 
             pagination.UserList = userList.ToList();
             pagination.Pagination = new Pagination

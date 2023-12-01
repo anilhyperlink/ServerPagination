@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-sm-6 text-xs-center">
                 <div class="form-group">
-                    <button class="btn btn-default btn-md waves-effect waves-light m-b-20" data-toggle="modal" data-target="#add-modal">
+                    <button class="btn btn-default btn-md waves-effect waves-light m-b-20" data-toggle="modal" data-target="#add-modal" onclick="OpenAddUserForm()">
                         <i class="fa fa-plus m-r-5"></i> Add User
                     </button>
                 </div>
@@ -37,75 +37,8 @@
                     <h4 class="modal-title">Add User</h4>
                 </div>
 
-                <div class="modal-body">
-                    <form id="AddUserForm">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="field-1" class="control-label">FirstName</label>
-                                    <input type="text" class="form-control" id="field-1" name="FirstName" placeholder="John" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="field-2" class="control-label">Lastname</label>
-                                    <input type="text" class="form-control" id="field-2" name="LastName" placeholder="Doe" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="field-3" class="control-label">Email</label>
-                                    <input type="email" class="form-control" id="field-3" name="EmailAddress" placeholder="email123@gmail.com" />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="field-4" class="control-label">Mobile No</label>
-                                    <input type="tel" class="form-control" id="field-4" name="MobileNo" placeholder="1234567890" />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin-bottom: 5px;">
-                            <div class="col-md-4">
-                                <div>
-                                    <label>Gender</label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="radio radio-info radio-inline">
-                                    <input type="radio" id="inlineRadio1" value="Male" name="Gender" />
-                                    <label for="inlineRadio1"> Male </label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="radio radio-info radio-inline">
-                                    <input type="radio" id="inlineRadio" value="Female" name="Gender" />
-                                    <label for="inlineRadio"> Female </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="field-7" class="control-label">Password</label>
-                                    <input type="password" name="Password" class="form-control" id="field-7" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="field-8" class="control-label">Confirm Password</label>
-                                    <input type="password" name="Gender" class="form-control" id="field-8" />
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                <div class="modal-body" id="addUserBody">
+                    
                 </div>
 
                 <div class="modal-footer">

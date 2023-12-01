@@ -4,6 +4,7 @@ using ServerPagination.Models.Comman;
 using ServerPagination.Services;
 using System;
 using System.Diagnostics;
+using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 
 namespace ServerPagination.Controllers
@@ -12,11 +13,11 @@ namespace ServerPagination.Controllers
     {
         private readonly IManageService<SetPagination, PaginationModel> _userListManageService;
         private readonly IManageService<UserModel, string> _addUserManageService;
-        private readonly IManageService<(string,int), string> _deleteUserManageService;
+        private readonly IManageService<(string, int), string> _deleteUserManageService;
         private readonly IManageService<(string, int), string> _activeManageService;
         private readonly IManageService<(string, int), UserModel> _getUserManageService;
         private readonly IManageService<UserModel, string> _editUserManageService;
-        
+
         public HomeController
             (
                 IManageService<SetPagination, PaginationModel> userListManageService,
@@ -25,7 +26,7 @@ namespace ServerPagination.Controllers
                 IManageService<(string, int), string> activeManageService,
                 IManageService<(string, int), UserModel> getUserManageService,
                 IManageService<UserModel, string> editUserManageService
-            )    
+            )
         {
             _userListManageService = userListManageService;
             _addUserManageService = addUserManageService;
@@ -33,7 +34,7 @@ namespace ServerPagination.Controllers
             _activeManageService = activeManageService;
             _getUserManageService = getUserManageService;
             _editUserManageService = editUserManageService;
-    }
+        }
 
         [HttpGet]
         public IActionResult Index()
@@ -71,16 +72,35 @@ namespace ServerPagination.Controllers
                 return View(ex.Message);
             }
         }
-
+        // add 
         [HttpGet]
+        public IActionResult AddUser()
+        {
+            return PartialView("_AddUser");
+        }
+        // change
+        [HttpPost]
         public IActionResult AddUser(UserModel user)
         {
-            var response = _addUserManageService.PostAsync(UrlConstants.AddUserUrl, user);
-            if (response == null)
+            try
             {
-                return BadRequest();
+                TryValidateModel(user);
+                if (ModelState.IsValid)
+                {
+                    var response = _addUserManageService.PostAsync(UrlConstants.AddUserUrl, user);
+                    if (response == null)
+                    {
+                        return BadRequest();
+                    }
+                    return Ok(true);
+                }
+                return View(user);  
+                //return PartialView("_AddUser", user);
             }
-            return Ok(true);
+            catch (Exception ex)
+            {
+                return View(ex.Message);
+            }
         }
 
         [HttpDelete]
