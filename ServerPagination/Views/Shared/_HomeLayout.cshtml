@@ -9,6 +9,9 @@
     <link rel="shortcut icon" href="~/images/favicon_1.ico">
 
     <title>ServerPagination | @ViewData["Title"]</title>
+
+    <!-- summernote -->
+    <link href="~/assets/plugins/summernote/dist/summernote.css" rel="stylesheet" />
     
     <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/assets/css/core.css" rel="stylesheet" type="text/css" />
@@ -17,6 +20,8 @@
     <link href="~/assets/css/pages.css" rel="stylesheet" type="text/css" />
     <link href="~/assets/css/responsive.css" rel="stylesheet" type="text/css" />
     <link href="~/css/site.css" rel="stylesheet" />
+    <!-- Java script -->
+    <script src="~/assets/js/jquery.min.js"></script>
 
 </head>
 
@@ -81,6 +86,16 @@
                             <a href='@Url.Action("Profile", "Home")' class="waves-effect"><i class="ti-user"></i><span> Profile </span></a>
                         </li>
 
+                        <li class="">
+                            <a href="#" class="waves-effect"><i class="ti-gift"></i><span> CMS </span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="@Url.Action("AboutUs", "Content")">AboutUs</a></li>
+                                <li><a href="">Tems & Condition</a></li>
+                                <li><a href="">ContectUs</a></li>
+                            </ul>
+                        </li>
+
+
                     </ul>
                     <div class="clearfix"></div>
                 </div>
@@ -113,7 +128,6 @@
     </script>
 
     <!-- jQuery  -->
-    <script src="~/assets/js/jquery.min.js"></script>
     <script src="~/assets/js/bootstrap.min.js"></script>
     <script src="~/assets/js/detect.js"></script>
     <script src="~/assets/js/fastclick.js"></script>
@@ -125,7 +139,12 @@
     <script src="~/assets/js/jquery.scrollTo.min.js"></script>
 
     <!-- jQuery -->
+    <script src="~/assets/js/jquery.core.js"></script>
+    <script src="~/assets/js/jquery.app.js"></script>
     <script src="~/js/site.js"></script>
+
+    <!--javascrit plugins-->
+    <script src="~/assets/plugins/summernote/dist/summernote.min.js"></script>
 
     <script type="text/javascript">
         jQuery(document).ready(function ($) {
@@ -135,10 +154,6 @@
             });
             $(".knob").knob();
         });
-    </script>
-
-    <script>
-        var resizefunc = [];
     </script>
 
 </body>

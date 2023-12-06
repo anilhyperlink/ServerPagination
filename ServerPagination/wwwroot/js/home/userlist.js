@@ -54,10 +54,10 @@ function AddUser() {
         data: formData,
         success: function (data) {
             if (data == true) {
-                $('.close').click();
+                $('#addclose').click(); //close modal
                 $("#AddUserForm")[0].reset(); //clear modal data
                 UserList(PageNumber);
-                toastr.success("Record Successfully added!"); // Message
+                //toastr.success("Record Successfully added!"); // Message
             }
             else {
                 $('#addUserBody').html(data);
@@ -105,7 +105,7 @@ function EditUser() {
                 $('.close').click();
                 /*$("#EditUserForm")[0].reset();*/
                 UserList(PageNumber);
-                toastr.success("Record has been saved Successfully!"); // Message
+                //toastr.success("Record has been saved Successfully!"); // Message
             }
             else {
 
