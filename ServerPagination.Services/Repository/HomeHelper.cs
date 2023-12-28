@@ -28,12 +28,12 @@ namespace ServerPagination.Services.Repository
             _homeDbRepository.DeleteUser(userId);
         }
 
-        public void EditUser(UserModel user)
+        public void EditUser(EditUserModel user)
         {
             _homeDbRepository.EditUser(user);
         }
 
-        public UserModel GetUser(int userId)
+        public EditUserModel GetUser(int userId)
         {
             return _homeDbRepository.GetUser(userId);
         }

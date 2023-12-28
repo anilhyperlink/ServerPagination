@@ -31,7 +31,8 @@ namespace ServerPagination
             services.AddScoped<IManageService<SetPagination, PaginationModel>, ManageService<SetPagination, PaginationModel>>();
             services.AddScoped<IManageService<UserModel, string>, ManageService<UserModel, string>>();
             services.AddScoped<IManageService<(string, int), string>, ManageService<(string, int), string>>();
-            services.AddScoped<IManageService<(string, int), UserModel>, ManageService<(string, int), UserModel>>();
+            services.AddScoped<IManageService<(string, int), EditUserModel>, ManageService<(string, int), EditUserModel>>();
+            services.AddScoped<IManageService<EditUserModel, string>, ManageService<EditUserModel, string>>();
 
         }
 

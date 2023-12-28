@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ServerPagination.DataAccess.DatabaseContext;
 using ServerPagination.Models;
 using ServerPagination.Models.Comman;
 using ServerPagination.Services;
 using System;
 using System.Diagnostics;
-using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 
 namespace ServerPagination.Controllers
@@ -15,8 +15,8 @@ namespace ServerPagination.Controllers
         private readonly IManageService<UserModel, string> _addUserManageService;
         private readonly IManageService<(string, int), string> _deleteUserManageService;
         private readonly IManageService<(string, int), string> _activeManageService;
-        private readonly IManageService<(string, int), UserModel> _getUserManageService;
-        private readonly IManageService<UserModel, string> _editUserManageService;
+        private readonly IManageService<(string, int), EditUserModel> _getUserManageService;
+        private readonly IManageService<EditUserModel, string> _editUserManageService;
 
         public HomeController
             (
@@ -24,8 +24,8 @@ namespace ServerPagination.Controllers
                 IManageService<UserModel, string> addUserManageService,
                 IManageService<(string, int), string> deleteUserManageService,
                 IManageService<(string, int), string> activeManageService,
-                IManageService<(string, int), UserModel> getUserManageService,
-                IManageService<UserModel, string> editUserManageService
+                IManageService<(string, int), EditUserModel> getUserManageService,
+                IManageService<EditUserModel, string> editUserManageService
             )
         {
             _userListManageService = userListManageService;
@@ -72,13 +72,13 @@ namespace ServerPagination.Controllers
                 return View(ex.Message);
             }
         }
-        // add 
+        
         [HttpGet]
         public IActionResult AddUser()
         {
             return PartialView("_AddUser");
         }
-        // change
+        
         [HttpPost]
         public IActionResult AddUser(UserModel user)
         {
@@ -95,7 +95,7 @@ namespace ServerPagination.Controllers
                     return Ok(true);
                 }
                 return View(user);  
-                //return PartialView("_AddUser", user);
+                
             }
             catch (Exception ex)
             {
@@ -103,20 +103,48 @@ namespace ServerPagination.Controllers
             }
         }
 
-        [HttpDelete]
-        public IActionResult DeleteUser(int UserId)
+        [HttpGet]
+        public IActionResult GetUser(int UserId)
         {
-            var response = _deleteUserManageService.DeleteAsync(UrlConstants.DeleteUserUrl, UserId);
+            var response = _getUserManageService.GetAsync(UrlConstants.GetUserManageUrl, UserId);
+            if (response == null)
+            {
+                return BadRequest();
+            }
+            return PartialView("_EditUser", response.Result);
+        }
+
+        [HttpPut]
+        public IActionResult EditUser(EditUserModel user)
+        {
+            TryValidateModel(user);
+            if (ModelState.IsValid)
+            {
+                var response = _editUserManageService.PutAsync(UrlConstants.EditUserUrl, user);
+                if (response == null)
+                {
+                    return BadRequest();
+                }
+                return Ok(true);
+            }
+            return PartialView("_EditUser", user);
+        }
+
+        [HttpGet]
+        public IActionResult ActiveManage(int UserId)
+        {
+            var response = _activeManageService.GetAsync(UrlConstants.ActiveManageUrl, UserId);
             if (response == null)
             {
                 return BadRequest();
             }
             return Ok(true);
         }
-        [HttpGet]
-        public IActionResult ActiveManage(int UserId)
+
+        [HttpDelete]
+        public IActionResult DeleteUser(int UserId)
         {
-            var response = _activeManageService.GetAsync(UrlConstants.ActiveManageUrl, UserId);
+            var response = _deleteUserManageService.DeleteAsync(UrlConstants.DeleteUserUrl, UserId);
             if (response == null)
             {
                 return BadRequest();
@@ -132,30 +160,10 @@ namespace ServerPagination.Controllers
             {
                 return BadRequest();
             }
-            return Ok(response.Result);
+            return PartialView("_ViewUser", response.Result);
         }
 
-        [HttpGet]
-        public IActionResult GetUser(int UserId)
-        {
-            var response = _getUserManageService.GetAsync(UrlConstants.GetUserManageUrl, UserId);
-            if (response == null)
-            {
-                return BadRequest();
-            }
-            return Ok(response.Result);
-        }
-
-        [HttpPut]
-        public IActionResult EditUser(UserModel user)
-        {
-            var response = _editUserManageService.PutAsync(UrlConstants.EditUserUrl, user);
-            if (response == null)
-            {
-                return BadRequest();
-            }
-            return Ok(true);
-        }
+        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -68,7 +68,7 @@ namespace EmployeeAPIDemo.Web.DataAccess.StoredProcedureDbAccess.Repository
             vconn.Execute("sp_proc_DeleteUser", vParams, commandType: CommandType.StoredProcedure);
         }
 
-        public void EditUser(UserModel user)
+        public void EditUser(EditUserModel user)
         {
             user.UpdatedDate = DateTime.Now;
             using var vconn = GetOpenConnection();
@@ -83,12 +83,12 @@ namespace EmployeeAPIDemo.Web.DataAccess.StoredProcedureDbAccess.Repository
             vconn.Execute("sp_proc_EditUser", vParams, commandType: CommandType.StoredProcedure);
         }
 
-        public UserModel GetUser(int userId)
+        public EditUserModel GetUser(int userId)
         {
             using var vconn = GetOpenConnection();
             var vParams = new DynamicParameters();
             vParams.Add("@UserId", userId);
-            var userData = vconn.QueryFirstOrDefault<UserModel>("sp_proc_GetUser", vParams, commandType: CommandType.StoredProcedure);
+            var userData = vconn.QueryFirstOrDefault<EditUserModel>("sp_proc_GetUser", vParams, commandType: CommandType.StoredProcedure);
             return userData;
         }
 

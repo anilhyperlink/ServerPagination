@@ -24,6 +24,7 @@
         </div>
     </div>
 
+    <!-- user list -->
     <div id="UserListPartial">
         @await Html.PartialAsync("_UserList",ViewData["UserList"])
     </div>
@@ -38,7 +39,6 @@
                 </div>
 
                 <div class="modal-body" id="addUserBody">
-                    
                 </div>
 
                 <div class="modal-footer">
@@ -59,64 +59,12 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title">View User Details</h4>
             </div>
-            <div class="modal-body">
-                <form id="ViewUserForm">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="FirstName" class="control-label">First Name</label>
-                                <input type="text" class="form-control" id="FirstName" name="FirstName" readonly />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="Lastname" class="control-label">Last Name</label>
-                                <input type="text" class="form-control" id="LastName" name="LastName" readonly />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="EmailAddress" class="control-label">Email Address</label>
-                                <input type="email" class="form-control" id="EmailAddress" name="EmailAddress" readonly />
-                            </div>
-                        </div>
-                    </div>
+            <div class="modal-body" id="viewUserBody">
+                @Html.Partial("_ViewUser",Model)
+            </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="MobileNo" class="control-label">Mobile No</label>
-                                <input type="tel" class="form-control" id="MobileNo" name="MobileNo" readonly />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row" style="margin-bottom: 5px;">
-                        <div class="col-md-4">
-                            <div>
-                                <label>Gender</label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="radio radio-info radio-inline">
-                                <input type="radio" id="Male" value="Male" name="Gender" disabled>
-                                <label for="Male"> Male </label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="radio radio-info radio-inline">
-                                <input type="radio" id="Female" value="Female" name="Gender" disabled>
-                                <label for="Female"> Female </label>
-                            </div>
-                        </div>
-                    </div>
-
-                </form>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
-                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -130,67 +78,88 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="EditClearModalData">×</button>
                 <h4 class="modal-title">Edit User</h4>
             </div>
-            <div class="modal-body">
-                <form id="EditUserForm">
 
-                    <input type="hidden" id="UserId" name="UserId" />
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="FirstName1" class="control-label">First Name</label>
-                                <input type="text" class="form-control" id="FirstName1" name="FirstName" />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="Lastname1" class="control-label">Last Name</label>
-                                <input type="text" class="form-control" id="LastName1" name="LastName" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="EmailAddress1" class="control-label">Email Address</label>
-                                <input type="email" class="form-control" id="EmailAddress1" name="EmailAddress" />
-                            </div>
-                        </div>
-                    </div>
+            <div class="modal-body" id="editUserBody">
+                @*<form id="EditUserForm">
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="MobileNo1" class="control-label">Mobile No</label>
-                                <input type="tel" class="form-control" id="MobileNo1" name="MobileNo" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row" style="margin-bottom: 5px;">
-                        <div class="col-md-4">
-                            <div>
-                                <label>Gender</label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="radio radio-info radio-inline">
-                                <input type="radio" id="Male1" value="Male" name="Gender">
-                                <label for="Male1"> Male </label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="radio radio-info radio-inline">
-                                <input type="radio" id="Female1" value="Female" name="Gender">
-                                <label for="Female1"> Female </label>
-                            </div>
-                        </div>
-                    </div>
-
-                </form>
-                <div class="modal-footer">
-                    <button type="button" id="editclose" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-info waves-effect waves-light" onclick="EditUser()">Save changes</button>
+                <input type="hidden" id="UserId" name="UserId" />
+                <div class="row">
+                <div class="col-md-6">
+                <div class="form-group">
+                <label for="FirstName1" class="control-label">First Name</label>
+                <input type="text" class="form-control" id="FirstName1" name="FirstName" />
                 </div>
+                </div>
+                <div class="col-md-6">
+                <div class="form-group">
+                <label for="Lastname1" class="control-label">Last Name</label>
+                <input type="text" class="form-control" id="LastName1" name="LastName" />
+                </div>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-md-12">
+                <div class="form-group">
+                <label for="EmailAddress1" class="control-label">Email Address</label>
+                <input type="email" class="form-control" id="EmailAddress1" name="EmailAddress" />
+                </div>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-md-12">
+                <div class="form-group">
+                <label for="MobileNo1" class="control-label">Mobile No</label>
+                <input type="tel" class="form-control" id="MobileNo1" name="MobileNo" />
+                </div>
+                </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 5px;">
+                <div class="col-md-4">
+                <div>
+                <label>Gender</label>
+                </div>
+                </div>
+                <div class="col-md-4">
+                <div class="radio radio-info radio-inline">
+                <input type="radio" id="Male1" value="Male" name="Gender">
+                <label for="Male1"> Male </label>
+                </div>
+                </div>
+                <div class="col-md-4">
+                <div class="radio radio-info radio-inline">
+                <input type="radio" id="Female1" value="Female" name="Gender">
+                <label for="Female1"> Female </label>
+                </div>
+                </div>
+                </div>
+
+                </form>*@
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" id="editclose" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-info waves-effect waves-light" onclick="EditUser()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="add-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" onclick="AddClearModalData()" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Add User</h4>
+            </div>
+
+            <div class="modal-body" id="addUserBody">
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="addclose" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-info waves-effect waves-light" onclick="AddUser()">Add user</button>
             </div>
         </div>
     </div>

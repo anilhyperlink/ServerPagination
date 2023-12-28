@@ -7,8 +7,8 @@ namespace ServerPagination.Services.Abstraction
         void ActiveManage(int userId);
         void AddUser(UserModel user);
         void DeleteUser(int userId);
-        void EditUser(UserModel user);
-        UserModel GetUser(int userId);
+        void EditUser(EditUserModel user);
+        EditUserModel GetUser(int userId);
         PaginationModel UserList(SetPagination setPagination);
     }
 }

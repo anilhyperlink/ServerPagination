@@ -57,7 +57,6 @@ function AddUser() {
                 $('#addclose').click(); //close modal
                 $("#AddUserForm")[0].reset(); //clear modal data
                 UserList(PageNumber);
-                //toastr.success("Record Successfully added!"); // Message
             }
             else {
                 $('#addUserBody').html(data);
@@ -77,17 +76,7 @@ function GetUser(UserId) {
         url: '/Home/GetUser',
         data: { UserId: UserId },
         success: function (data) {
-            $('#UserId').val(data.userId);
-            $('#FirstName1').val(data.firstName);
-            $("#LastName1").val(data.lastName);
-            $('#EmailAddress1').val(data.emailAddress);
-            if (data.gender === 'Male') {
-                $('#Male1').attr('checked', '');
-            }
-            else if (data.gender === 'Female') {
-                $('#Female1').attr('checked', '');
-            }
-            $('#MobileNo1').val(data.mobileNo);
+            $('#editUserBody').html(data);
         },
         error: function (er) {
             console.log(er);
@@ -102,13 +91,12 @@ function EditUser() {
         data: formData,
         success: function (data) {
             if (data == true) {
-                $('.close').click();
-                /*$("#EditUserForm")[0].reset();*/
+                $('#editclose').click(); //close modal
+                $("#EditUserForm")[0].reset(); //clear modal data
                 UserList(PageNumber);
-                //toastr.success("Record has been saved Successfully!"); // Message
             }
             else {
-
+                $('#editUserBody').html(data);
             }
 
         },
@@ -176,16 +164,7 @@ function ViewUser(UserId) {
         url: '/Home/ViewUser',
         data: { UserId: UserId },
         success: function (data) {
-            $('#FirstName').val(data.firstName);
-            $("#LastName").val(data.lastName);
-            $('#EmailAddress').val(data.emailAddress);
-            if (data.gender === 'Male') {
-                $('#Male').attr('checked', '');
-            }
-            else if (data.gender === 'Female') {
-                $('#Female').attr('checked', '');
-            }
-            $('#MobileNo').val(data.mobileNo);
+            $('#viewUserBody').html(data);
         },
         error: function (er) {
             console.log(er);
