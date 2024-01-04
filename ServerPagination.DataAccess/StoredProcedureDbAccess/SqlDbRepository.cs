@@ -8,8 +8,8 @@ namespace ServerPagination.WebedureDbAccess
 {
     public abstract class SqlDbRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
-        private string _connectionString;
-        public SqlDbRepository(string connectionString)
+        private readonly string _connectionString;
+        protected SqlDbRepository(string connectionString)
         {
             _connectionString = connectionString;
         }

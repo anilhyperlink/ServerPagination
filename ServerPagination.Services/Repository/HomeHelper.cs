@@ -1,5 +1,4 @@
-﻿using ServerPagination.DataAccess.DatabaseContext;
-using ServerPagination.DataAccess.StoredProcedureDbAccess.Abstraction;
+﻿using ServerPagination.DataAccess.StoredProcedureDbAccess.Abstraction;
 using ServerPagination.Models;
 using ServerPagination.Services.Abstraction;
 

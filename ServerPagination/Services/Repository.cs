@@ -23,7 +23,7 @@ namespace ServerPagination.Services
                 var request = new RestRequest(aRequestUri + id, Method.Get);
                 request.AddHeader("Content-Type", "application/json");
 
-                var vSvcResponse = client.Execute(request);
+                var vSvcResponse = await client.ExecuteAsync(request);
                 if (vSvcResponse.IsSuccessful)
                 {
                     var response = JsonConvert.DeserializeObject<ResponseModel<TResponseEntity>>(vSvcResponse.Content);
@@ -32,7 +32,7 @@ namespace ServerPagination.Services
                 else
                 {
                     var response = JsonConvert.DeserializeObject<ResponseModel<TResponseEntity>>(vSvcResponse.Content);
-                    throw new Exception(response.message);
+                    throw new InvalidOperationException(response.message);
                 }
             }
             catch (Exception)
@@ -40,7 +40,6 @@ namespace ServerPagination.Services
                 throw;
             }
         }
-        
         public async Task<List<TResponseEntity>> GetAllByIdAsync(string aRequestUri, string id)
         {
             try
@@ -49,7 +48,7 @@ namespace ServerPagination.Services
                 var request = new RestRequest(aRequestUri + id, Method.Get);
                 request.AddHeader("Content-Type", "application/json");
 
-                var vSvcResponse = client.Execute(request);
+                var vSvcResponse = await client.ExecuteAsync(request);
                 if (vSvcResponse.IsSuccessful)
                 {
                     var response = JsonConvert.DeserializeObject<ListResponseModel<TResponseEntity>>(vSvcResponse.Content);
@@ -58,7 +57,7 @@ namespace ServerPagination.Services
                 else
                 {
                     var response = JsonConvert.DeserializeObject<ListResponseModel<TResponseEntity>>(vSvcResponse.Content);
-                    throw new Exception(response.message);
+                    throw new InvalidOperationException(response.message);
                 }
             }
             catch (Exception)
@@ -66,7 +65,6 @@ namespace ServerPagination.Services
                 throw;
             }
         }
-
         public async Task<List<TResponseEntity>> GetAllAsync(string aRequestUri)
         {
             try
@@ -75,7 +73,8 @@ namespace ServerPagination.Services
                 var request = new RestRequest(aRequestUri, Method.Get);
                 request.AddHeader("Content-Type", "application/json");
 
-                var vSvcResponse = client.Execute(request);
+                var vSvcResponse = await client.ExecuteAsync(request);
+
                 if (vSvcResponse.IsSuccessful)
                 {
                     var response = JsonConvert.DeserializeObject<ListResponseModel<TResponseEntity>>(vSvcResponse.Content);
@@ -84,7 +83,7 @@ namespace ServerPagination.Services
                 else
                 {
                     var response = JsonConvert.DeserializeObject<ListResponseModel<TResponseEntity>>(vSvcResponse.Content);
-                    throw new Exception(response.message);
+                    throw new InvalidOperationException(response.message);
                 }
             }
             catch (Exception)
@@ -92,7 +91,6 @@ namespace ServerPagination.Services
                 throw;
             }
         }
-
         public async Task<TResponseEntity> PostAsync(string aRequestUri, TRequestEntity aObj)
         {
             try
@@ -102,8 +100,7 @@ namespace ServerPagination.Services
                 request.AddHeader("Content-Type", "application/json");
                 request.AddParameter("application/json", JsonConvert.SerializeObject(aObj), ParameterType.RequestBody);
 
-                // call API controller
-                var vSvcResponse = client.Execute(request);
+                var vSvcResponse = await client.ExecuteAsync(request);
 
                 if (vSvcResponse.IsSuccessful)
                 {
@@ -113,7 +110,7 @@ namespace ServerPagination.Services
                 else
                 {
                     var response = JsonConvert.DeserializeObject<ResponseModel<TResponseEntity>>(vSvcResponse.Content);
-                    throw new Exception(response.message);
+                    throw new InvalidOperationException(response.message);
                 }
             }
             catch (Exception)
@@ -121,7 +118,6 @@ namespace ServerPagination.Services
                 throw;
             }
         }
-
         public async Task<TResponseEntity> PutAsync(string aRequestUri, TRequestEntity aObj)
         {
             try
@@ -131,7 +127,8 @@ namespace ServerPagination.Services
                 request.AddHeader("Content-Type", "application/json");
                 request.AddParameter("application/json", JsonConvert.SerializeObject(aObj), ParameterType.RequestBody);
 
-                var vSvcResponse = client.Execute(request);
+
+                var vSvcResponse = await client.ExecuteAsync(request);
                 if (vSvcResponse.IsSuccessful)
                 {
                     var response = JsonConvert.DeserializeObject<ResponseModel<TResponseEntity>>(vSvcResponse.Content);
@@ -140,7 +137,7 @@ namespace ServerPagination.Services
                 else
                 {
                     var response = JsonConvert.DeserializeObject<ResponseModel<TResponseEntity>>(vSvcResponse.Content);
-                    throw new Exception(response.message);
+                    throw new InvalidOperationException(response.message);
                 }
             }
             catch (Exception)
@@ -156,7 +153,7 @@ namespace ServerPagination.Services
                 var request = new RestRequest(aRequestUri + id, Method.Delete);
                 request.AddHeader("Content-Type", "application/json");
 
-                var vSvcResponse = client.Execute(request);
+                var vSvcResponse = await client.ExecuteAsync(request);
                 if (vSvcResponse.IsSuccessful)
                 {
                     var response = JsonConvert.DeserializeObject<ResponseModel<TResponseEntity>>(vSvcResponse.Content);
@@ -165,7 +162,7 @@ namespace ServerPagination.Services
                 else
                 {
                     var response = JsonConvert.DeserializeObject<ResponseModel<TResponseEntity>>(vSvcResponse.Content);
-                    throw new Exception(response.message);
+                    throw new InvalidOperationException(response.message);
                 }
             }
             catch (Exception)

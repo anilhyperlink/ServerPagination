@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ServerPagination.DataAccess.DatabaseContext;
 using ServerPagination.Models;
 using ServerPagination.Models.Comman;
 using ServerPagination.Services;
@@ -64,7 +63,7 @@ namespace ServerPagination.Controllers
                 {
                     setPagination.SearchQuery = searchQuery;
                 }
-                var response = await _userListManageService.PostAsync(UrlConstants.GetUserListUrl, setPagination);
+                var response = await _userListManageService.PostAsync(UrlConstants.UserListUrl, setPagination);
                 return PartialView("_UserList", response);
             }
             catch (Exception ex)

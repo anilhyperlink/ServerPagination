@@ -1,5 +1,5 @@
 ﻿/********************** start pagination listing **********************/
-var searchQuery = '';
+let searchQuery = '';
 let PageNumber = 1;
 
 $(document).ready(function () {
@@ -47,13 +47,13 @@ function OpenAddUserForm() {
 
 function AddUser() {
 
-    var formData = $('#AddUserForm').serialize();
+    let formData = $('#AddUserForm').serialize();
     $.ajax({
         type: 'post',
         url: '/Home/AddUser',
         data: formData,
         success: function (data) {
-            if (data == true) {
+            if (data) {
                 $('#addclose').click(); //close modal
                 $("#AddUserForm")[0].reset(); //clear modal data
                 UserList(PageNumber);
@@ -84,13 +84,13 @@ function GetUser(UserId) {
     });
 }
 function EditUser() {
-    var formData = $('#EditUserForm').serialize();
+    let formData = $('#EditUserForm').serialize();
     $.ajax({
         type: 'put',
         url: '/Home/EditUser',
         data: formData,
         success: function (data) {
-            if (data == true) {
+            if (data) {
                 $('#editclose').click(); //close modal
                 $("#EditUserForm")[0].reset(); //clear modal data
                 UserList(PageNumber);

@@ -1,10 +1,8 @@
 ﻿/************************* loader ******************************/
-
 .loader {
-    position: relative;
-    width: 2.5em;
-    height: 2.5em;
-    transform: rotate(165deg);
+    position: absolute;
+    top: calc(55% - 1.25em);
+    left: calc(55% - 1.25em);
 }
 
     .loader:before,
@@ -68,12 +66,6 @@
     100% {
         box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
     }
-}
-
-.loader {
-    position: absolute;
-    top: calc(55% - 1.25em);
-    left: calc(55% - 1.25em);
 }
 
 /************************* Pagination ******************************/

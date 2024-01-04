@@ -6,7 +6,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using ServerPagination.DataAccess.DatabaseContext;
 using ServerPagination.DataAccess.StoredProcedureDbAccess.Abstraction;
 using ServerPagination.Services.Abstraction;
 using ServerPagination.Services.Repository;
@@ -29,21 +28,6 @@ namespace ServerPagination.API
 
             services.AddControllers();
             services.AddControllersWithViews();
-
-            // connection service
-            services.AddDbContext<ServerPaginationDBContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), builder => builder.EnableRetryOnFailure());
-            });
-
-            services.AddSingleton<Func<ServerPaginationDBContext>>(() =>
-            {
-                var optionsBuilder = new DbContextOptionsBuilder<ServerPaginationDBContext>();
-                optionsBuilder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-                var dbContext = new ServerPaginationDBContext(optionsBuilder.Options);
-                dbContext.Database.SetCommandTimeout(TimeSpan.FromSeconds(300));
-                return dbContext;
-            });
 
             // store Procedure services
             string connectionstring = Configuration.GetConnectionString("DefaultConnection");
@@ -79,7 +63,7 @@ namespace ServerPagination.API
                                     Id = "Bearer"
                                 }
                             },
-                           new string[] {}
+                           Array.Empty<string>()
                     }
                 });
 

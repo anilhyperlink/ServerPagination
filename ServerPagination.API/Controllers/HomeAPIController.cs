@@ -9,10 +9,10 @@ namespace ServerPagination.API.Controllers
 {
     [Route("api/v1")]
     [ApiController]
-    public class HomeAPIController : Controller
+    public class HomeApiController : Controller
     {
         private readonly IHomeHelper _homeHelper;
-        public HomeAPIController(IHomeHelper homeHelper)
+        public HomeApiController(IHomeHelper homeHelper)
         {
             _homeHelper = homeHelper;
         }
@@ -133,20 +133,12 @@ namespace ServerPagination.API.Controllers
             Response response = new();
             try
             {
-                var userdata = "";
+
                 _homeHelper.ActiveManage(UserId);
-                if (userdata != null)
-                {
-                    response.code = StatusCodes.Status200OK;
-                    response.status = true;
-                    response.message = "Success";
-                    response.data = userdata;
-                    return Ok(response);
-                }
-                response.code = StatusCodes.Status400BadRequest;
-                response.status = false;
-                response.message = "Object is null.";
-                return BadRequest(response);
+                response.code = StatusCodes.Status200OK;
+                response.status = true;
+                response.message = "Success";
+                return Ok(response);
             }
             catch (Exception e)
             {
@@ -165,20 +157,11 @@ namespace ServerPagination.API.Controllers
             Response response = new();
             try
             {
-                var userdata = "";
                 _homeHelper.DeleteUser(UserId);
-                if (userdata != null)
-                {
-                    response.code = StatusCodes.Status200OK;
-                    response.status = true;
-                    response.message = "Success";
-                    response.data = userdata;
-                    return Ok(response);
-                }
-                response.code = StatusCodes.Status400BadRequest;
-                response.status = false;
-                response.message = "Object is null.";
-                return BadRequest(response);
+                response.code = StatusCodes.Status200OK;
+                response.status = true;
+                response.message = "Success";
+                return Ok(response);
             }
             catch (Exception e)
             {
