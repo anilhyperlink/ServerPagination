@@ -93,7 +93,7 @@ namespace ServerPagination.Controllers
                     }
                     return Ok(true);
                 }
-                return View(user);  
+                return View(user);
                 
             }
             catch (Exception ex)

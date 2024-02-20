@@ -4,14 +4,14 @@
 <link href="~/assets/plugins/custombox/dist/custombox.min.css" rel="stylesheet">
 
 <table class="table table-striped m-b-0 table-hover toggle-circle">
-    <caption>Manage User</caption>
     <thead>
-        <tr>
+        <tr class="info">
             <th>CreatedDate</th>
+            <th class="text-center">Profile</th>
             <th>Name</th>
             <th>Gender</th>
             <th>Email</th>
-            <th>Mobile@*<i class="fa fa-sort" aria-hidden="true"></i>*@</th>
+            <th>Mobile</th>
             <th class="text-center">Status</th>
             <th class="text-center">Action</th>
         </tr>
@@ -23,6 +23,9 @@
             <tbody>
                 <tr>
                     <td>@(Model.UserList[i].CreatedDate.Value.ToString("dd MMM yyyy"))</td>
+                    <td class="text-center">
+                        <img src="~/assets/images/users/@Model.UserList[i].ProfileImage" alt="contact-img" title="contact-img" class="img-circle thumb-sm">
+                    </td>
                     <td>@(Model.UserList[i].FirstName + " " + Model.UserList[i].LastName) </td>
                     <td>@Model.UserList[i].Gender</td>
                     <td>@Model.UserList[i].EmailAddress</td>
@@ -30,15 +33,12 @@
                     <td class="text-center">
                         @if (Model.UserList[i].IsActive == false)
                         {
-                            @*<span class="btn btn-danger btn-xs font-weight-bold">Unactive</span>*@
                             <button class="btn btn-danger btn-xs btn-icon fa fa-lock m-l-10" onclick="ActiveManage(@Model.UserList[i].UserId)"></button>
 
                         }
                         else
                         {
-                            @*<span class="btn btn-success btn-xs font-weight-bold">Active</span>*@
                             <button class="btn btn-success btn-xs btn-icon fa fa-unlock  m-l-10" onclick="ActiveManage(@Model.UserList[i].UserId)"></button>
-
                         }
 
                     </td>
